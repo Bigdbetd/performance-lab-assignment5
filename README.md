@@ -1,54 +1,27 @@
-# 🧪 Performance Lab – Test, Analyze, Optimize
+# Performance Lab Assignment 5
 
-As a new engineer on the performance optimization team, your job is to evaluate common algorithms not just for correctness, but for how well they scale. In this assignment, you’ll implement several small functions and assess their performance in terms of **time and space complexity**.
+Five implemented Python algorithms with time and space analysis in multiline comments directly below each solution in `performance_lab.py`.
 
-Each function includes a prompt and space for your analysis.
+## Run the tests
 
-## 📁 File: `performance_lab.py`
+Requires Python 3 and uses only the standard library.
 
-This file contains **five algorithmic challenges**. For each one, you are expected to:
+```bash
+python3 performance_lab.py
+```
 
-1. **Write a working implementation** using Python  
-2. **Define your own test cases** and verify that your code works  
-3. **Complete the performance analysis block** below your function  
-   - Best-case, worst-case, and average-case time complexity  
-   - Space complexity  
-   - Justification of your approach and possible optimizations  
+The file includes 20 tests covering assignment examples, empty inputs, ties, negative numbers, order preservation, unique pairs, resize boundaries, input validation, and input preservation. A seeded randomized test also checks 100 cases against reference implementations. All 20 tests passed locally before the code was committed.
 
-## Problems
+## Solutions
 
-1. **Find Most Frequent Element**  
-   Return the value that appears most frequently in a list.
+1. `most_frequent`: frequency dictionary; empty input returns `None`.
+2. `remove_duplicates`: set membership with a list that preserves first-occurrence order.
+3. `find_pairs`: complement lookup; follows the starter's distinct-input assumption.
+4. `add_n_items`: fixed initial capacity of 4, real allocation and copying when capacity doubles, and printed resize messages.
+5. `running_total`: a single pass with a running sum.
 
-2. **Remove Duplicates While Preserving Order**  
-   Remove duplicate values while keeping the original order.
+## Optimization
 
-3. **Return All Pairs That Sum to Target**  
-   Find all unique pairs of numbers that add up to a given target.
+`running_total_original` is retained for comparison. It repeatedly slices and sums prefixes in O(n²) time. The refactored `running_total` runs in O(n) time and uses O(1) auxiliary memory instead of O(n) temporary slice memory. Both return an O(n) output list. Full assumptions, best/average/worst cases, potential improvements, and trade-offs appear in `performance_lab.py`.
 
-4. **Simulate List Resizing**  
-   Model how lists grow dynamically and analyze amortized time complexity.
-
-5. **Compute Running Totals**  
-   Return a new list where each item is the sum of all values up to that index.
-
-## How to Complete This Lab
-
-- Edit the `performance_lab.py` file directly.
-- Add test cases using `print()` or assert statements to confirm correctness.
-- Fill out the analysis block after each function with your complexity breakdown.
-- Use your understanding of core operations (insert, delete, access, traverse) and structure trade-offs from earlier units.
-
-## Submission Instructions
-
-When complete:
-
-1. Save and commit your work using Git  
-2. Push to GitHub using:
-
-   ```bash
-   git add .
-   git commit -m "Completed performance lab"
-   git push
-   ```
-3. Submit your repository link on Learn.
+Starter template: https://github.com/RizeComputerScience/COMPSV-Assignment5
